@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Recommendations API</title>
+  <script src="dist/js/app.js"></script>
+  <link rel="stylesheet" href="dist/css/app.css">
+</head>
+<body>
+  <div class="hide container" id="login-panel">
+    <h3>Login to spotify</h3>
+    <a id="login" class="button button-primary" href="">Click to Login</a>
+  </div>
+  <div class="hide container" id="recommendations-panel">
+    <h3>Recommendations</h3>
+    <section>
+    <form>
+      <label for="artist1">Your favourite artists</label>
+      <div class="row artists">
+        <input class="four columns" type="text" placeholder="Bon Iver" id="artist1">
+        <input class="one-third column" type="text" placeholder="King Krule" id="artist2">
+        <input class="one-third column" type="text" placeholder="Mac Demarco" id="artist3">
+      </div>
+      <label for="genre1">Your favourite Genres</label>
+      <div class="row genres">
+        <input class="four columns" type="text" placeholder="Indie" id="genre1">
+        <input class="one-third column" type="text" placeholder="Rock" id="genre2">
+        <input class="one-third column" type="text" id="genre3">
+      </div>
+      <button id="submit" class="button-primary">Submit</button>
+      <button id="autofill" class="button u-pull-right">Autofill</button>
+    </form>
+    </section>
+    <section id="results">
+      <!-- <div class="head row hide">
+        <div class="one-third column"><h6>Artist</h6></div>
+        <div class="one-third column"><h6>Song</h6></div>
+        <div class="one-third column"><h6>Album</h6></div>
+      </div> -->
+    </section>
+  </div>
+  <script id="song-template" type="text/x-handlebars-template">
+    <div class="item">
+      <div class="image">
+        <img src="{{albumSrc}}">
+      </div>
+      <div class="text">
+        <p><b>{{song}}</b> by {{artist}}</p>
+        <p>{{album}}</p>
+      </div>
+    </div>
+  </script>
+</body>
+</html>
