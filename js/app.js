@@ -5,7 +5,7 @@ var Handlebars = require("handlebars");
 // global vars
 var clientId = "45f7d54407b04085a00ec732235ae188";
 var responseType = "token";
-var redirectUri = "http://localhost:3000/";
+var redirectUri = window.location.origin;
 
 var login = "https://accounts.spotify.com/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=" + responseType;
 var accessToken = "";
