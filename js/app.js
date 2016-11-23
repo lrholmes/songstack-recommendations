@@ -24,12 +24,16 @@ if (window.location.hash) {
 $(document).ready(function() {
   if (loggedIn) {
     $('#recommendations-panel').show();
-    $('#submit').click(requestRecommendations);
+    $('#submit').click(function(event) {
+      event.preventDefault();
+      requestRecommendations();
+    });
 
     source = $('#song-template').html();
     template = Handlebars.compile(source);
 
     $('#autofill').click(function(event) {
+      event.preventDefault();
       console.log('click');
       $('form input').each(function(index, el) {
         $(this).attr('value', $(this).attr('placeholder'));
@@ -44,7 +48,7 @@ $(document).ready(function() {
 
 function requestRecommendations() {
 
-  var url = "https://api.spotify.com/v1/recommendations?seed_artists=";
+  var url = "https://api.spotify.com/v1/recommendations?market=GB&seed_artists=";
   // get all form information
   var artists = [];
   var genres = [];
@@ -77,8 +81,6 @@ function requestRecommendations() {
       }
     });
     if (!ajax) { // hacky ajax continued
-      url += '&max_popularity=20';
-      console.log(accessToken);
       $.ajax({
        url: url,
        headers: {
