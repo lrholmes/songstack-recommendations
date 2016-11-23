@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 function requestRecommendations() {
 
-  var url = "https://api.spotify.com/v1/recommendations?seed_tracks=";
+  var url = "https://api.spotify.com/v1/recommendations?seed_artists=";
   // get all form information
   var artists = [];
   var genres = [];
