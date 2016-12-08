@@ -845,10 +845,13 @@ body {
   animation: animate-in 500ms;
   float: left;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  cursor: pointer; }
   @media (min-width: 600px) {
     .item {
       width: 50%; } }
+  .item:hover {
+    color: #f8ba54; }
   .item img {
     float: left;
     width: 40px;

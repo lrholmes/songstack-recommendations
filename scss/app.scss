@@ -30,8 +30,12 @@ body {
   float: left;
   display: flex;
   align-items: center;
+  cursor: pointer;
   @media(min-width: 600px) {
     width: 50%;
+  }
+  &:hover {
+    color: $secondary;
   }
   img {
     float: left;
