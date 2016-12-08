@@ -3,15 +3,29 @@
 
 body {
   padding-top: 1.5em;
+  padding-bottom: 5.5em;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: #222;
+}
+
+#find-more {
+  animation: animate-in 500ms ease;
+  display: inline-block;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 .hide {
   display: none;
 }
 
+.selected {
+  //background-color: $primary;
+  color: $primary;
+}
+
 .item {
+  transition: all 300ms ease;
   animation: animate-in 500ms;
   float: left;
   display: flex;

@@ -6,6 +6,7 @@ var Handlebars = require("handlebars");
 var clientId = "45f7d54407b04085a00ec732235ae188";
 var responseType = "token";
 var redirectUri = window.location.origin;
+var moreClicks = 0;
 
 var login = "https://accounts.spotify.com/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=" + responseType;
 var accessToken = "";
@@ -94,14 +95,53 @@ function requestRecommendations() {
                album: response.tracks[i].album.name,
                song: response.tracks[i].name,
                artist: response.tracks[i].artists[0].name,
-               albumSrc: response.tracks[i].album.images[1].url
+               albumSrc: response.tracks[i].album.images[1].url,
+               songId: response.tracks[i].id
              };
              var result = template(data); // handlebars do it thing
              $('#results').append(result);
            }
+           $('#results').append('<button id="find-more" class="button-primary" onclick="requestMoreRecommendations">Find More</button><div class="divide"></div>');
+           $('#find-more').click(function(){
+             findMoreRecommendations();
+           });
+           $('.item').click(function(el){
+             if (moreClicks < 5) {
+               $(this).addClass('selected');
+               moreClicks++;
+             }
+           });
        }
     });
     ajax = true;
   }
   });
+}
+
+function findMoreRecommendations() {
+  var url = "https://api.spotify.com/v1/recommendations?market=GB&seed_tracks=";
+  $('.selected').each(function(index, el) {
+    url += $(el).attr('id');
+    url += ",";
+  });
+
+  $.ajax({
+   url: url,
+   headers: {
+       'Authorization': 'Bearer ' + accessToken
+   },
+   success: function(response) {
+       for (var i = 0; i < response.tracks.length; i++) {
+         var data = {
+           album: response.tracks[i].album.name,
+           song: response.tracks[i].name,
+           artist: response.tracks[i].artists[0].name,
+           albumSrc: response.tracks[i].album.images[1].url,
+           songId: response.tracks[i].id
+         };
+         var result = template(data); // handlebars do it thing
+         $('#results').append(result);
+       }
+   }
+});
 }
